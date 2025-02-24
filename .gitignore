@@ -1,0 +1,9 @@
+.env
+*.log
+/tmp
+/node_modules
+/vendor
+/External Libraries
+/Scratches and Consoles
+.DS_Store
+.idea
