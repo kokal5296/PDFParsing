@@ -17,7 +17,7 @@ func main() {
 
 	// Get the connection string and database name from the environment variables
 	connStr := os.Getenv("POSTGRESQL_URI")
-	dbName := os.Getenv("POSTGRESQL_DB_NAME")
+	dbName := os.Getenv("DB_NAME")
 
 	createServer := server.CreateServer(connStr, dbName)
 	log.Println("Server started")

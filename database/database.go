@@ -76,19 +76,19 @@ func (db *PostgreSQLConnection) NewDatabase(connStr string, dbName string) (*Pos
 func (db *PostgreSQLConnection) CreateTablesIfNotExist() error {
 
 	queries := []string{
-		`CREATE TABLE users (
-    	 id SERIAL  PRIMARY KEY
+		`CREATE TABLE IF NOT EXISTS users (
+    	 id INT AUTO_INCREMENT PRIMARY KEY
 		 );`,
 
-		`CREATE TABLE files (
-    	 id SERIAL PRIMARY KEY,
+		`CREATE TABLE IF NOT EXISTS files (
+    	 id INT AUTO_INCREMENT PRIMARY KEY,
     	 filename VARCHAR(255) NOT NULL,
     	 file_hash VARCHAR(64) UNIQUE NOT NULL,
      	 parsed_file BYTEA,
      	 status VARCHAR(20) CHECK (status IN ('queued', 'processing', 'parsed')) NOT NULL DEFAULT 'queued'
 		 );`,
 
-		`CREATE TABLE user_files (
+		`CREATE TABLE IF NOT EXISTS user_files (
     	user_id INT NOT NULL,
     	file_id INT NOT NULL,
     	filename VARCHAR(255) NOT NULL,
@@ -98,8 +98,8 @@ func (db *PostgreSQLConnection) CreateTablesIfNotExist() error {
     	FOREIGN KEY (file_id) REFERENCES files(id) ON DELETE CASCADE
 		);`,
 
-		`CREATE TABLE queue (
-    	id SERIAL PRIMARY KEY,
+		`CREATE TABLE IF NOT EXISTS queue (
+    	INT AUTO_INCREMENT PRIMARY KEY,
     	file_id INT NOT NULL,
     	FOREIGN KEY (file_id) REFERENCES files(id) ON DELETE CASCADE
 		);`,

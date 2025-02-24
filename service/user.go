@@ -31,7 +31,7 @@ func (s *UserServiceStruct) CreateUser(ctx context.Context) (int, error) {
 	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
 	defer cancel()
 
-	query := `INSERT INTO user () VALUES () RETURNING id`
+	query := `INSERT INTO users () VALUES () RETURNING ID`
 
 	var userId int
 	err := s.dbService.GetPool().QueryRow(ctx, query).Scan(&userId)

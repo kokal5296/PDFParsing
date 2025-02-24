@@ -10,10 +10,10 @@ COPY . .
 RUN go build -o main .
 
 
-ARG APP_PORT
-ENV APP_PORT=${APP_PORT}
+ARG PORT
+ENV APORT=${PORT}
 
 # Expose the dynamic port
-EXPOSE ${APP_PORT}
+EXPOSE ${PORT}
 
 CMD ["./main"]

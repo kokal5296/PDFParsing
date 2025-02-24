@@ -182,7 +182,7 @@ func (s *FileServiceStruct) ImportFile(ctx context.Context, userId int, fileId i
 	defer cancel()
 
 	var userCount int
-	query := `SELECT COUNT (*) FROM user WHERE id = $1`
+	query := `SELECT COUNT (*) FROM users WHERE id = $1`
 	err := s.dbService.GetPool().QueryRow(ctx, query, userId).Scan(&userCount)
 	if err != nil {
 		if err == er.HandleDeadlineExceededError(err) {
